@@ -1,0 +1,51 @@
+name: Sonar code Quality
+
+on:
+    workflow_call:
+        secrets:
+            SONAR_TOKEN:
+                required: true
+            SONAR_HOST_URL:
+                required: true
+jobs:
+    sonar:
+        runs-on: self-hosted
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v7
+              with:
+                  fetch-depth: 0
+
+            - name: Setup NodeJs
+              uses: actions/setup-node@v7
+
+            - name: Install dependency
+              run: npm install
+
+            - name: Run tests with coverage
+              run: npm test
+
+            - name: SonarQube scan
+              uses: SonarSource/sonarqube-scan-action@v8
+              with:
+                  args: >
+                      -Dsonar.projectKey=${{ github.event.repository.name }}
+                      -Dsonar.sources=src
+                      -Dsonar.tests=tests
+                      -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+
+              env:
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+            # Check the Quality Gate status.
+            - name: SonarQube Quality Gate check
+              id: sonarqube-quality-gate-check
+              uses: sonarsource/sonarqube-quality-gate-action@v1
+              with:
+                  pollingTimeoutSec: 600
+              env:
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+                  SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }} #OPTIONAL
+
+            - name: "Example show SonarQube Quality Gate Status value"
+              run: echo "The Quality Gate status is ${{ steps.sonarqube-quality-gate-check.outputs.quality-gate-status }}"

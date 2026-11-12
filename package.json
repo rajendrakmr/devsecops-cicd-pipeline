@@ -12,12 +12,18 @@
     "helmet": "^8.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.14.0",
+    "globals": "^17.14.0",
     "jest": "^29.7.0",
     "supertest": "^7.0.0"
   },
   "jest": {
     "testEnvironment": "node",
-    "coverageReporters": ["lcov", "text-summary"]
+    "coverageReporters": [
+      "lcov",
+      "text-summary"
+    ]
   },
   "license": "MIT"
 }
