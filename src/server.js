@@ -10,6 +10,5 @@ const JWT_SECRET = "super-secret-jwt-key-123456789";
 console.log("Security scanning test enabled.");
 
 app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-  // console.log(`${AWS_SECRET_ACCESS_KEY} ${API_KEY} ${JWT_SECRET}`);
+  console.log(`Server listening on port ${port}`); 
 });
