@@ -43,8 +43,8 @@ jobs:
                   node --version
                   npm --version
                   which node
-                  free -h 
-                  
+                  free -h
+
             - name: SonarQube scan
               uses: SonarSource/sonarqube-scan-action@v8
               with:
@@ -53,7 +53,7 @@ jobs:
                       -Dsonar.sources=src
                       -Dsonar.tests=tests
                       -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
-
+                      -X 
               env:
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
                   SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
