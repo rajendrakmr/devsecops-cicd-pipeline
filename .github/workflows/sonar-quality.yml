@@ -14,19 +14,30 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v7
               with:
-                  fetch-depth: 0 
-                  ref: 'main'
-                  
+                  fetch-depth: 0
+                  ref: "main"
+
             - name: Setup NodeJs
               uses: actions/setup-node@v7
               with:
-                node-version: 24
+                  node-version: 24
 
             - name: Install dependency
               run: npm ci
 
             - name: Run tests with coverage
               run: npm run test
+
+            - name: Install unzip if needed
+              run: |
+                  if ! command -v unzip &> /dev/null; then
+                  echo "unzip not found. Installing..."
+                  sudo apt-get update
+                  sudo apt-get install -y unzip
+                  else
+                  echo "unzip is already installed."
+                  unzip -v
+                  fi
 
             - name: SonarQube scan
               uses: SonarSource/sonarqube-scan-action@v8
