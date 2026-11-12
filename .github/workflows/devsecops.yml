@@ -1,0 +1,14 @@
+name: DevSecOps CICD Pipeline
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+  lint-validate:
+    uses: ./.github/workflows/code-quality.yml
+
+  code-quality:
+    uses: ./.github/workflows/sonar-quality.yml
+  

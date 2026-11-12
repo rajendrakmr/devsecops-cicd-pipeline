@@ -40,6 +40,18 @@ push / PR ──► Build & Test (Jest)
 
 ## Setup
 
+docker volume create sonarqube_data
+docker volume create sonarqube_extensions
+docker volume create sonarqube_logs
+
+docker run -d \
+  --name sonarqube \
+  -p 9000:9000 \
+  -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true \
+  -v sonarqube_data:/opt/sonarqube/data \
+  -v sonarqube_extensions:/opt/sonarqube/extensions \
+  -v sonarqube_logs:/opt/sonarqube/logs \
+  sonarqube:community
 1. Push this repo to GitHub.
 2. Add repository secrets (Settings > Secrets and variables > Actions):
    - `SONAR_TOKEN`, `SONAR_HOST_URL` - from your SonarQube server or SonarCloud

@@ -5,7 +5,8 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "lint": "eslint src tests"
   },
   "dependencies": {
     "express": "^4.21.2",
