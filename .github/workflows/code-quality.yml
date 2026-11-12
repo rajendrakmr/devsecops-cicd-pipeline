@@ -14,8 +14,7 @@ jobs:
               uses: actions/setup-node@v7
 
             - name: Install dependency
-              run: npm install4
+              run: npm install
 
             - name: Run linter
-              run: npm run linter
-            
+              run: npm run lint
