@@ -38,7 +38,13 @@ jobs:
                   echo "unzip is already installed."
                   unzip -v
                   fi
-
+            - name: Verify Node.js
+              run: |
+                  node --version
+                  npm --version
+                  which node
+                  free -h 
+                  
             - name: SonarQube scan
               uses: SonarSource/sonarqube-scan-action@v8
               with:

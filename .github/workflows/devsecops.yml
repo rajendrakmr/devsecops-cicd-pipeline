@@ -13,3 +13,7 @@ jobs:
     uses: ./.github/workflows/sonar-quality.yml
     secrets: inherit
   
+  gitleaks:
+    uses: ./.github/workflows/secrets-scan.yml
+    secrets: inherit
+  
