@@ -11,4 +11,5 @@ jobs:
 
   code-quality:
     uses: ./.github/workflows/sonar-quality.yml
+    secrets: inherit
   
