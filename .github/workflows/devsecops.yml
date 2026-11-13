@@ -19,4 +19,7 @@ jobs:
 
   dockerfile:
     uses: ./.github/workflows/docker-lint.yml
-    
+
+  docker-registry:
+    uses: ./.github/workflows/docker-build-and-push.yml
+    secrets: inherit

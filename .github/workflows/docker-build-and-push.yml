@@ -1,0 +1,27 @@
+name: Docker Build and Push
+
+on:
+    workflow_call:
+
+jobs:
+    build_and_push:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v7
+
+            - name: Login to Docker hub
+              uses: docker/login-action@v4
+              with:
+                  username: ${{ vars.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            - name: Build & Push
+              uses: docker/build-push-action@v7
+              with:
+                  contexts: .
+                  push: true
+                  tags: |
+                      ${{vars.DOCKERHUB_USERNAME}}/devsecops-node-app:${{github.ref_name}}
+                      ${{vars.DOCKERHUB_USERNAME}}/devsecops-node-app:latest
+                      ${{vars.DOCKERHUB_USERNAME}}/devsecops-node-app:${{github.sha}}
