@@ -6,6 +6,8 @@ The pipeline integrates automated code quality checks, static application securi
 
 It uses a **self-hosted GitHub Actions runner** for executing CI/CD jobs and Docker-based SonarQube for code quality analysis.
 
+![cicd](docs/screenshots/cicd.png)
+
 ---
 
 ## Architecture
@@ -361,23 +363,7 @@ Add your screenshots to that directory.
 ### 3. Gitleaks Secret Detection
 
 ![Gitleaks Secret Scan](docs/screenshots/gitleaks-scan.png)
-
-### 4. Dependency Vulnerability Scan
-
-![Dependency Check](docs/screenshots/dependency-check.png)
-
-### 5. Docker Build and Push
-
-![Docker Build and Push](docs/screenshots/docker-build-push.png)
-
-### 6. Trivy Container Image Scan
-
-![Trivy Image Scan](docs/screenshots/trivy-image-scan.png)
-
-### 7. Self-Hosted Runner
-
-![Self Hosted Runner](docs/screenshots/self-hosted-runner.png)
-
+ 
 ---
 
 ## Resume Highlights
