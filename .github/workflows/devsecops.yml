@@ -1,9 +1,9 @@
 name: DevSecOps CICD Pipeline
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 jobs:
   lint-validate:
@@ -12,8 +12,11 @@ jobs:
   code-quality:
     uses: ./.github/workflows/sonar-quality.yml
     secrets: inherit
-  
+
   gitleaks:
     uses: ./.github/workflows/secrets-scan.yml
     secrets: inherit
-  
+
+  dockerfile:
+    uses: ./.github/workflows/docker-lint.yml
+    

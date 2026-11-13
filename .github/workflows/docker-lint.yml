@@ -1,0 +1,16 @@
+name: Docker lint
+
+on:
+    workflow_call:
+
+jobs:
+    scan:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v7
+
+            - name: Run docker lint
+              uses: hadolint/hadolint-action@v3
+              with:
+                  dockerfile: Dockerfile
