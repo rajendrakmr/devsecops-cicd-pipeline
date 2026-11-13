@@ -21,5 +21,11 @@ jobs:
     uses: ./.github/workflows/docker-lint.yml
 
   docker-registry:
+    needs: [lint-validate,code-quality,dockerfile,gitleaks]
     uses: ./.github/workflows/docker-build-and-push.yml
+    secrets: inherit
+
+  registry-image:
+    needs: [docker-registry]
+    uses: ./.github/workflows/image-scan.yml
     secrets: inherit

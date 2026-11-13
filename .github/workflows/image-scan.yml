@@ -1,0 +1,24 @@
+name: Image Scan
+
+on:
+    workflow_call:
+
+jobs:
+    validate:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Docker Login
+              uses: docker/login-action@v4
+              with:
+                  password: ${{secrets.DOCKERHUB_TOKEN}}
+                  username: ${{vars.DOCKERHUB_USERNAME}}
+
+            - name: Trivy Scan
+              uses: aquasecurity/trivy-action@v0.36.0
+              with:
+                  image-ref: ${{vars.DOCKERHUB_USERNAME}}/devsecops-node-app:${{github.sha}}
+                  format: "table"
+                  exit-code: "1"
+                  ignore-unfixed: true
+                  vuln-type: "os,library"
+                  severity: "CRITICAL"
