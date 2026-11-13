@@ -123,8 +123,7 @@ devsecops-cicd-pipeline/
 | CI/CD Runner | Self-hosted Ubuntu Runner |
 | Code Quality | ESLint |
 | SAST | SonarQube |
-| Secret Scanning | Gitleaks |
-| Dependency Scanning | OWASP Dependency-Check |
+| Secret Scanning | Gitleaks | 
 | Dockerfile Linting | Hadolint |
 | Containerization | Docker |
 | Container Registry | Docker Hub |
@@ -163,7 +162,7 @@ docker run -d \
 Open:
 
 ```text
-http://localhost:9000
+http://3.251.65.45:9000
 ```
 
 Default credentials:
@@ -206,7 +205,8 @@ Verify the runner status in GitHub:
 ```text
 Repository → Settings → Actions → Runners
 ```
-
+![Selfhosted Runners](docs/screenshots/selfhosted-runners.png)
+ 
 The runner should show as **Idle** when available.
 
 ---
@@ -223,15 +223,14 @@ Configure the following values under:
 |---|---|
 | `SONAR_TOKEN` | SonarQube authentication |
 | `SONAR_HOST_URL` | SonarQube server URL |
-| `DOCKER_HUB_TOKEN` | Docker Hub authentication token |
-| `NVD_API_KEY` | NVD API access for Dependency-Check |
+| `DOCKER_HUB_TOKEN` | Docker Hub authentication token | 
 | `GITLEAKS_LICENSE` | Optional, if required by your Gitleaks setup |
 
 ### Repository Variables
 
 | Variable Name | Purpose |
 |---|---|
-| `DOCKERHUB_USERNAME` | Docker Hub username |
+| `DOCKERHUB_USER` | Docker Hub username |
 
 Use repository secrets for sensitive credentials. Never hardcode tokens or passwords in workflow files.
 
@@ -322,6 +321,8 @@ Check running containers:
 docker ps
 ```
 
+![Sonarqube container](docs/screenshots/sonarqube-container.png)
+ 
 ---
 
 ## Security Practices Demonstrated
@@ -344,14 +345,6 @@ docker ps
 
 Screenshots of successful workflow execution and security scan results can be added here.
 
-Create the following directory:
-
-```bash
-mkdir -p docs/screenshots
-```
-
-Add your screenshots to that directory.
-
 ### 1. GitHub Actions Pipeline Overview
 
 ![GitHub Actions Pipeline](docs/screenshots/pipeline-overview.png)
@@ -365,17 +358,7 @@ Add your screenshots to that directory.
 ![Gitleaks Secret Scan](docs/screenshots/gitleaks-scan.png)
  
 ---
-
-## Resume Highlights
-
-- Designed and implemented an end-to-end DevSecOps CI/CD pipeline using GitHub Actions and reusable workflows.
-- Integrated SonarQube, Gitleaks, OWASP Dependency-Check, Hadolint and Trivy for automated security and code quality validation.
-- Configured a self-hosted Ubuntu GitHub Actions runner to execute CI/CD workflows.
-- Automated Docker image building and publishing to Docker Hub.
-- Implemented container image vulnerability scanning using Trivy.
-- Applied shift-left security practices by integrating automated security checks into the CI/CD lifecycle.
-
----
+ 
 
 ## Author
 
