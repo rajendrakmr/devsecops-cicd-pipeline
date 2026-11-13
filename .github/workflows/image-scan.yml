@@ -11,12 +11,12 @@ jobs:
               uses: docker/login-action@v4
               with:
                   password: ${{secrets.DOCKER_HUB_TOKEN}}
-                  username: ${{vars.DOCKERHUB_USERNAME}}
+                  username: ${{vars.DOCKERHUB_USER}}
 
             - name: Trivy Scan
               uses: aquasecurity/trivy-action@v0.36.0
               with:
-                  image-ref: ${{vars.DOCKERHUB_USERNAME}}/devsecops-node-app:${{github.sha}}
+                  image-ref: ${{vars.DOCKERHUB_USER}}/devsecops-node-app:${{github.sha}}
                   format: "table"
                   exit-code: "1"
                   ignore-unfixed: true
